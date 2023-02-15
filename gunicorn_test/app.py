@@ -24,6 +24,10 @@ app.register_error_handler(400, handle_bad_request)
 def home():
     return "Hello, stranger"
 
+@app.route('/about')
+def about():
+    return "Simple API webapp"
+
 
 @app.route('/test/<params>')
 def test(params):
