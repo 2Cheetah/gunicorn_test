@@ -10,6 +10,7 @@ packages = [{include = "gunicorn_test"}]
 python = "^3.10"
 flask = "^2.2.2"
 gunicorn = "^20.1.0"
+flask-expects-json = "^1.7.0"
 
 
 [build-system]
