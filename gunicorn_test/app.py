@@ -20,6 +20,11 @@ def handle_bad_request(error):
 app.register_error_handler(400, handle_bad_request)
 
 
+@app.route('/')
+def home():
+    return "Hello, stranger"
+
+
 @app.route('/test/<params>')
 def test(params):
     return f"These are the passed params: {params}\n"
