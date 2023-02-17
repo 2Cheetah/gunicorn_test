@@ -29,9 +29,13 @@ def about():
     return "Simple API webapp"
 
 
-@app.route('/test/<params>')
-def test(params):
-    return f"These are the passed params: {params}\n"
+@app.post('/test')
+@expects_json(schema)
+def test():
+    if request.is_json:
+        data = request.get_json()
+        return data
+    return "Provided data is not json" 
 
 
 @app.post('/api/sum')
