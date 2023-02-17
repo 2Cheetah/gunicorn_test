@@ -34,7 +34,7 @@ def about():
 def test():
     if request.is_json:
         data = request.get_json()
-        return data
+        print(data)
     print("Provided data is not json")
 
 
