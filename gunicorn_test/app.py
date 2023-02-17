@@ -30,13 +30,10 @@ def about():
 
 
 @app.post('/test')
-@expects_json(schema)
 def test():
-    if request.is_json:
-        data = request.get_json()
-        print(data)
-    print("Provided data is not json")
-
+    data = request.get_json()
+    print(data)
+    return {"received data": f"{data}"}, 200
 
 @app.post('/api/sum')
 def calc_sum():
