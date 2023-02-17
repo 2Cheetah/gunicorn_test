@@ -35,7 +35,7 @@ def test():
     if request.is_json:
         data = request.get_json()
         return data
-    return "Provided data is not json" 
+    print("Provided data is not json")
 
 
 @app.post('/api/sum')
