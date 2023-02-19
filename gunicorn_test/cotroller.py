@@ -10,7 +10,6 @@ class Bots:
             "api_key": api_key,
         }
 
-
     def get_data(self):
         result = requests.get(self.url, headers=self.headers)
         print(result.json())
@@ -33,6 +32,22 @@ class NotificationSample(Forms):
             "api_key": api_key,
         }
 
+
+# Notificaiton sample
+# {
+#   'botUserId': 51884226,
+#   'firstName': 'Denis',
+#   'lastName': 'Safiullin',
+#   'name': 'Denis Safiullin',
+#   'username': 'WeCheetah',
+#   'phone': '',
+#   'email': '',
+#   'date':
+#   '2023-02-19T11:25:03.000Z',
+#   'botId': 124442,
+#   'formId': 'iqepgkqtlm',
+#   'data': [{'question': 'Choose', 'answer': 'Yes'}]
+# }
 
 class Notifications(Forms):
     def __init__(self, api_key, botId):
@@ -66,13 +81,13 @@ class Notifications(Forms):
 
         response = requests.delete(
             url,
-            headers = self.headers,
+            headers=self.headers,
             data=unsubscribe_data,
         )
 
         print(response)
 #        print(response.json())
-    
+
     def get_notifications_list(self, formId):
         url = f"https://api.pro.chatforma.com/public/v1/notification?botId={self.botId}&formId={formId}"
         response = requests.get(url, headers=self.headers)
@@ -95,7 +110,7 @@ class Message(Forms):
             "uid": userId,
             "message": message,
         }
-        
+
         response = requests.post(
             url,
             headers=self.headers,
@@ -121,11 +136,11 @@ if __name__ == "__main__":
 #     print("Fetching list of Bots...")
 #     bots = Bots(api_key)
 #     bots.get_data()
-    
+
 #     print("\nFetching list of Forms...")
 #     forms = Forms(api_key, '124442')
 #     forms.get_data()
-    
+
 #     print("\nNotification sample:")
 #     notification_sample = NotificationSample(api_key, '124442', 'iqepgkqtlm')
 #     notification_sample.get_data()
@@ -136,7 +151,7 @@ if __name__ == "__main__":
 
     print("Unsubscribing from notifications...")
     notification.unsubscribe(37265)
-    
+
     notification.get_notifications_list("iqepgkqtlm")
 
     # print("\nFetching list of messages from bot...")

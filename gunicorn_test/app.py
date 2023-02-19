@@ -7,6 +7,7 @@ import werkzeug
 
 
 app = Flask(__name__)
+api_key = os.getenv('CHATFORMA_API_KEY')
 
 schema = {
     "hours": {"type": "int"},
@@ -39,8 +40,13 @@ def about():
 @app.post('/test')
 def test():
     data = request.get_json()
-
     print(data)
+    if data['data'][0]['answer'] == "Yes":
+        userId = data['botUserId']
+        hieroglyphs = time_hieroglyphs(hours=1, minutes=0)
+        message = Message(api_key=api_key, botId='124442')
+        message_text = f"Hieroglyph 1: {hieroglyphs[0]}\nHieroglyph 2: {hieroglyphs[1]}"
+        message.send_message(userId=userId, message=message_text)
     return data, 200
 
 @app.post('/api/sum')
