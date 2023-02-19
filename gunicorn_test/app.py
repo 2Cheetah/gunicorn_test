@@ -32,6 +32,7 @@ def about():
 @app.post('/test')
 def test():
     data = request.get_json()
+#    print(data)
     return data, 200
 
 @app.post('/api/sum')
