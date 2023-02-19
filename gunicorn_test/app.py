@@ -4,6 +4,7 @@ from cotroller import Message
 from flask_expects_json import expects_json
 from jsonschema import ValidationError
 import werkzeug
+import os
 
 
 app = Flask(__name__)
