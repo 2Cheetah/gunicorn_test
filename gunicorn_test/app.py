@@ -1,5 +1,6 @@
 from flask import Flask, request, make_response, jsonify
 from hieroglyph_calculator import time_hieroglyphs
+from cotroller import Message
 from flask_expects_json import expects_json
 from jsonschema import ValidationError
 import werkzeug
@@ -12,6 +13,12 @@ schema = {
     "minutes": {"type": "int"}
 }
 
+
+@app.errorhandler(werkzeug.exceptions.InternalServerError)
+def handle_internal_server_error(error):
+    return 'Internal server error!\n', 500
+
+app.register_error_handler(500, handle_internal_server_error)
 
 @app.errorhandler(werkzeug.exceptions.BadRequest)
 def handle_bad_request(error):
@@ -32,7 +39,8 @@ def about():
 @app.post('/test')
 def test():
     data = request.get_json()
-#    print(data)
+
+    print(data)
     return data, 200
 
 @app.post('/api/sum')
